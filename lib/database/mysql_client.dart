@@ -3,18 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:mysql_client/mysql_client.dart';
 
 class MysqlClient{
-  Future <List<String>> mysqlClientConnection() async{
-    final conn = await MySQLConnection.createConnection(
-      host: "172.168.35.107",
+  Future<MySQLConnection> mysqlConnection() async{
+    final connection = await MySQLConnection.createConnection(
+      host: "xxxx.xxxx.xxxx.xxxx",
       port: 3306,
       userName: "root",
-      password: "Exralabs@20",
-      databaseName: "mysqlbbse", // optional
+      password: "xxxxxxxxxx",
+      databaseName: "Your SQL Database", // optional
     );
-
-// actually connect to database
-    await conn.connect();
-
+    await connection.connect();
+    return connection;
+  }
+  Future <List<String>> mysqlClientConnection() async{
+    final conn = await mysqlConnection();
     var result = await conn.execute("SELECT name FROM names");
     List<String> names =[];
 
@@ -26,18 +27,11 @@ class MysqlClient{
     return names;
   }
 
+  /*-----ADD RECORD TO DATABASE-----*/
   void uploadData(String data, BuildContext context) async {
     // Connect to the MySQL database
-    var conn = await MySQLConnection.createConnection(
-      host: "172.168.35.107",
-      port: 3306,
-      userName: "root",
-      password: "Exralabs@20",
-      databaseName: "mysqlbbse", // optional
-    );
-    print(data);
+    var conn = await mysqlConnection();
     try {
-      await conn.connect();
       // Execute an INSERT query
       final result = await conn.execute(
         "INSERT INTO names(name) VALUES (:name)",
@@ -66,18 +60,13 @@ class MysqlClient{
       await conn.close();
     }
   }
+
+  /*----- DELETE RECORDS-----*/
   void deleteData(String data, BuildContext context) async {
     // Connect to the MySQL database
-    var conn = await MySQLConnection.createConnection(
-      host: "172.168.35.107",
-      port: 3306,
-      userName: "root",
-      password: "Exralabs@20",
-      databaseName: "mysqlbbse", // optional
-    );
+    var conn = await mysqlConnection();
     try {
-      await conn.connect();
-      // Execute an INSERT query
+      // Execute an DELETE query
       final result = await conn.execute(
         "DELETE FROM names WHERE name = :name",
         {
