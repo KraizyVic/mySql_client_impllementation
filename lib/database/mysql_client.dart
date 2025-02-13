@@ -9,7 +9,7 @@ class MysqlClient{
       port: 3306,
       userName: "root",
       password: "xxxxxxxxxx",
-      databaseName: "YOUR SQL DATABASE NAME",
+      databaseName: "YOUR MYSQL DATABASE NAME",
     );
     await connection.connect();
     return connection;
