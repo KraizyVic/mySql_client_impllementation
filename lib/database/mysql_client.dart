@@ -9,7 +9,7 @@ class MysqlClient{
       port: 3306,
       userName: "root",
       password: "xxxxxxxxxx",
-      databaseName: "Your SQL Database", // optional
+      databaseName: "YOUR SQL DATABASE NAME",
     );
     await connection.connect();
     return connection;
@@ -28,6 +28,7 @@ class MysqlClient{
   }
 
   /*-----ADD RECORD TO DATABASE-----*/
+
   void uploadData(String data, BuildContext context) async {
     // Connect to the MySQL database
     var conn = await mysqlConnection();
@@ -62,6 +63,7 @@ class MysqlClient{
   }
 
   /*----- DELETE RECORDS-----*/
+
   void deleteData(String data, BuildContext context) async {
     // Connect to the MySQL database
     var conn = await mysqlConnection();
