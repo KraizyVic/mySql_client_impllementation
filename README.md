@@ -5,7 +5,7 @@ Just an app I made ( WITH FLUTTER ) that connects to mysql database
 
 ## Prerequisites:
 
-  - A Computer or Famputer, whichever you own or owns YOU.
+  - A Computer or Femputer, whichever you own or owns YOU.
   - A little wee bit knowledge of MySql.
   - A BRAIN.
   - A capacity to enjoy simple things,
